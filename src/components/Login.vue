@@ -1,22 +1,33 @@
 <template>
-  <div class="login">
-    <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-      <el-form-item label="用户名" prop="name">
-        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-          <el-input v-model="ruleForm.name"></el-input>
-        </el-col>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-col :xs="4" :sm="6" :md="8" :lg="9" :xl="11">
-          <el-input type="password" :span="12" v-model="ruleForm.pass" auto-complete="off"></el-input>
-        </el-col>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
-    </el-form>
-  </div>
+
+  <el-container>
+    <el-header>A flowered world, a bodhi</el-header>
+    <el-main>
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+          <el-row type="flex" justify="center">
+            <el-col>
+              <el-card>
+                <el-form-item label="UserName" prop="username">
+                  <el-input v-model="ruleForm.username" status-icon="true"></el-input>
+                </el-form-item>
+                <el-form-item label="Email" prop="email">
+                  <el-input v-model="ruleForm.email" status-icon="true"></el-input>
+                </el-form-item>
+                <el-form-item label="PassWord" prop="pass">
+                  <el-input type="password" v-model="ruleForm.pass" status-icon="true" auto-complete="off"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+                  <el-button @click="resetForm('ruleForm')">重置</el-button>
+                </el-form-item>
+              </el-card>
+            </el-col>
+          </el-row>
+        </el-form>
+    </el-main>
+    <el-footer>一花一世界，一叶一菩提</el-footer>
+  </el-container>
+
 </template>
 
 <script>
@@ -25,13 +36,18 @@ export default {
   data () {
     return {
       ruleForm: {
-        name: '',
+        username: '',
+        email: '',
         pass: ''
       },
       rules: {
-        name: [
+        username: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: '请输入email', trigger: 'blur' },
+          { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
         ],
         pass: [
           { required: true, message: '请输入密码', trigger: 'blur' }
@@ -58,10 +74,30 @@ export default {
 </script>
 
 <style scoped>
-  .login{
-    background-color: #e5e9f2;
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   .el-col {
-    border-radius: 400px;
+    border-radius: 4px;
+    width: 480px;
   }
+  .el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
+  }
+  .el-main {
+    background-color: #E9EEF3;
+    color: #333;
+    text-align: center;
+    line-height: 160px;
+  }
+  .box-card {
+    width: 500px;
+  }
+
 </style>
