@@ -3,7 +3,7 @@
   <el-container>
     <el-header>A flowered world, a bodhi</el-header>
     <el-main>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+        <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
           <el-row type="flex" justify="center">
             <el-col>
               <el-card>
@@ -25,7 +25,7 @@
           </el-row>
         </el-form>
     </el-main>
-    <el-footer>一花一世界，一叶一菩提</el-footer>
+    <!-- <el-footer>一花一世界，一叶一菩提</el-footer> -->
   </el-container>
 
 </template>
@@ -57,14 +57,45 @@ export default {
   },
   methods: {
     submitForm (formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          alert('submit!');
-        } else {
-          console.log('error submit!!');
-          return false;
+
+      this.$http({
+        url: '/api.php',
+        baseURL: 'http://axiossample.app',
+        timeout: 1000,
+        method: 'post',
+        headers:{
+          'Content-Type':'application/x-www-form-urlencoded'
+        },
+        data: {
+          firstName: 'Fred'
         }
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
       });
+
+      // this.$refs[formName].validate((valid) => {
+      //   if (valid) {
+      //
+      //     // this.$http.get("http://").then((response) => {
+      //     //   console.log(response.data)
+      //     // });
+      //     // this.$message({
+      //     //   message: '登录成功',
+      //     //   type: 'success'
+      //     // });
+      //
+      //   } else {
+      //     this.$message({
+      //       message: '登录失败',
+      //       type: 'error'
+      //     });
+      //     return false;
+      //   }
+      // });
     },
     resetForm (formName) {
       this.$refs[formName].resetFields();
@@ -82,7 +113,7 @@ export default {
   }
   .el-col {
     border-radius: 4px;
-    width: 480px;
+    width: 400px;
   }
   .el-header, .el-footer {
     background-color: #B3C0D1;
@@ -96,8 +127,6 @@ export default {
     text-align: center;
     line-height: 160px;
   }
-  .box-card {
-    width: 500px;
-  }
+
 
 </style>

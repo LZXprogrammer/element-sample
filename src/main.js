@@ -5,8 +5,21 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+// import Qs from 'qs'
+//
+// var axios_instance = axios.create({
+//     baseURL: 'http://axiossample.app',
+//     transformRequest: [function (data) {
+//         data = Qs.stringify(data)
+//         return data
+//     }],
+//     headers:{ 'Content-Type': 'application/x-www-form-urlencoded' }
+// })
 
 Vue.use(ElementUI, { size: 'small' })
+Vue.use(VueAxios, axios)
 
 Vue.config.productionTip = false
 
