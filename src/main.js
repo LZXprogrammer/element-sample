@@ -7,7 +7,7 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import Vuex from '@/store/store'
+import store from '@/store/store'
 
 // import Qs from 'qs'
 //
