@@ -14,7 +14,8 @@ export default {
   name: 'Store',
   computed: {
     count () {
-      return store.state.count
+      return this.$store.state.count
+      // 或者写成（全局）： return store.state.count
     }
   },
   methods: {
